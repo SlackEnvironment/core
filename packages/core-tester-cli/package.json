@@ -1,0 +1,37 @@
+{
+  "name": "@slackenvironment/core-tester-cli",
+  "description": "Tester CLI for SLACK Core",
+  "version": "0.1.1",
+  "contributors": [
+    "TheComedicCoder <thecomediccoder@gmail.com>"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "bin": {
+    "slack:tester": "./bin/tester"
+  },
+  "scripts": {
+    "start": "./bin/tester",
+    "test": "cross-env SLACK_ENV=test jest --runInBand --detectOpenHandles",
+    "test:coverage": "cross-env SLACK_ENV=test jest --coverage --runInBand --detectOpenHandles",
+    "test:debug": "cross-env SLACK_ENV=test node --inspect-brk ../../node_modules/.bin/jest --runInBand --watch",
+    "test:watch": "cross-env SLACK_ENV=test jest --runInBand --watch",
+    "test:watch:all": "cross-env SLACK_ENV=test jest --runInBand --watchAll",
+    "lint": "eslint ./ --fix",
+    "depcheck": "depcheck ./ --ignores=commander"
+  },
+  "dependencies": {
+    "slackjs": "https://github.com/SlackEnvironment/slack-js#master",
+    "axios": "^0.18.0",
+    "bip39": "^2.5.0",
+    "clipboardy": "^1.2.3",
+    "commander": "^2.15.1",
+    "delay": "^2.0.0",
+    "lodash": "^4.2.1",
+    "pino": "^4.16.1",
+    "superheroes": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

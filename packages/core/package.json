@@ -1,0 +1,73 @@
+{
+  "name": "@slackenvironment/core",
+  "description": "Core of the SLACK Blockchain",
+  "version": "0.1.1",
+  "contributors": [
+    "TheComedicCoder <thecomediccoder@gmail.com>"
+  ],
+  "license": "MIT",
+  "bin": {
+    "slack:start": "./bin/slack start",
+    "slack:relay": "./bin/slack relay",
+    "slack:forger": "./bin/slack forger",
+    "slack:snapshot": "./bin/slack snapshot"
+  },
+  "scripts": {
+    "debug:start": "node --inspect-brk ./bin/slack start",
+    "debug:relay": "node --inspect-brk ./bin/slack relay",
+    "debug:forger": "node --inspect-brk ./bin/slack forger",
+    "debug:snapshot": "node --inspect-brk ./bin/slack snapshot",
+    "start": "./bin/slack start",
+    "start:mainnet": "./bin/slack start --config ./lib/config/mainnet --network mainnet",
+    "start:devnet": "./bin/slack start --config ./lib/config/devnet --network devnet",
+    "start:testnet": "cross-env SLACK_ENV=test ./bin/slack start --config ./lib/config/testnet --network testnet",
+    "start:testnet:live": "./bin/slack start --config ./lib/config/testnet.live --network testnet",
+    "relay": "./bin/slack relay",
+    "relay:mainnet": "./bin/slack relay --config ./lib/config/mainnet --network mainnet",
+    "relay:devnet": "./bin/slack relay --config ./lib/config/devnet --network devnet",
+    "relay:testnet": "cross-env SLACK_ENV=test ./bin/slack relay --config ./lib/config/testnet --network testnet",
+    "relay:testnet:live": "./bin/slack relay --config ./lib/config/testnet.live --network testnet",
+    "forger": "./bin/slack forger",
+    "forger:mainnet": "./bin/slack forger --config ./lib/config/mainnet --network mainnet",
+    "forger:devnet": "./bin/slack forger --config ./lib/config/devnet --network devnet",
+    "forger:testnet": "cross-env SLACK_ENV=test ./bin/slack forger --config ./lib/config/testnet --network testnet",
+    "forger:testnet:live": "./bin/slack forger --config ./lib/config/testnet.live --network testnet",
+    "snapshot": "./bin/slack snapshot",
+    "snapshot:mainnet": "./bin/slack snapshot --config ./lib/config/mainnet --network mainnet",
+    "snapshot:devnet": "./bin/slack snapshot --config ./lib/config/devnet --network devnet",
+    "snapshot:testnet": "./bin/slack snapshot --config ./lib/config/testnet --network testnet",
+    "snapshot:testnet:live": "./bin/slack snapshot --config ./lib/config/testnet.live --network testnet",
+    "full:testnet": "cross-env SLACK_ENV=test ./bin/slack start --config ./lib/config/testnet --network testnet --network-start",
+    "full:testnet:live": "./bin/slack start --config ./lib/config/testnet.live --network testnet --network-start",
+    "full:testnet:2tier:2": "cross-env SLACK_ENV=test ./bin/slack start --config ./lib/config/testnet.2 --network testnet --network-start",
+    "full:testnet:2tier:1": "cross-env SLACK_ENV=test ./bin/slack start --config ./lib/config/testnet.1 --network testnet --network-start",
+    "full:testnet:2tier": "cross-env SLACK_ENV=test ./bin/slack start --config ./lib/config/testnet.1 --network testnet --network-start && ./bin/slack start --config ./lib/config/testnet.2 --network testnet --network-start",
+    "lint": "eslint ./ --fix",
+    "depcheck": "depcheck ./ --ignores commander,bip38,fs,wif,@slackenvironment/core-api,@slackenvironment/core-blockchain,@slackenvironment/core-config,@slackenvironment/core-database,@slackenvironment/core-database-sequelize,@slackenvironment/core-forger,@slackenvironment/core-graphql,@slackenvironment/core-json-rpc,@slackenvironment/core-logger,@slackenvironment/core-logger-winston,@slackenvironment/core-p2p,@slackenvironment/core-transaction-pool,@slackenvironment/core-transaction-pool-redis,@slackenvironment/core-webhooks,@slackenvironment/crypto"
+  },
+  "dependencies": {
+    "@slackenvironment/core-api": "^0.1.1",
+    "@slackenvironment/core-blockchain": "^0.1.1",
+    "@slackenvironment/core-config": "^0.1.1",
+    "@slackenvironment/core-container": "^0.1.1",
+    "@slackenvironment/core-database": "^0.1.1",
+    "@slackenvironment/core-database-sequelize": "^0.1.1",
+    "@slackenvironment/core-forger": "^0.1.1",
+    "@slackenvironment/core-graphql": "^0.1.1",
+    "@slackenvironment/core-json-rpc": "^0.1.1",
+    "@slackenvironment/core-logger": "^0.1.1",
+    "@slackenvironment/core-logger-winston": "^0.1.1",
+    "@slackenvironment/core-p2p": "^0.1.1",
+    "@slackenvironment/core-transaction-pool": "^0.1.1",
+    "@slackenvironment/core-transaction-pool-redis": "^0.1.1",
+    "@slackenvironment/core-webhooks": "^0.1.1",
+    "@slackenvironment/crypto": "^0.1.1",
+    "bip38": "^2.0.2",
+    "commander": "^2.15.1",
+    "fs": "^0.0.1-security",
+    "wif": "^2.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,57 @@
+'use strict'
+
+const _ = require('lodash')
+const envfile = require('envfile')
+const expandHomeDir = require('expand-home-dir')
+const fs = require('fs-extra')
+const path = require('path')
+
+/**
+ * Get a random number from range.
+ * @param  {Number} min
+ * @param  {Number} max
+ * @return {Number}
+ */
+exports.getRandomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+exports.logger = require('./logger')
+
+/**
+ * Update the contents of the given file and return config.
+ * @param  {String} file
+ * @param  {Object} values
+ * @return {Object}
+ */
+exports.updateConfig = (file, values, configPath, forceOverwrite) => {
+  configPath = (configPath || `${process.env.SLACK_PATH_CONFIG}/deployer`)
+  configPath = path.resolve(configPath, file)
+  let config
+  if (fs.existsSync(configPath) && !forceOverwrite) {
+    config = require(configPath)
+  } else {
+    config = {}
+  }
+
+  for (let key in values) {
+    _.set(config, key, values[key])
+  }
+
+  fs.ensureFileSync(configPath)
+  fs.writeFileSync(configPath, JSON.stringify(config, null, 2))
+
+  return config
+}
+
+/**
+ * Write Environment variables to file.
+ * @param  {Object} object
+ * @param  {String} path
+ * @return {void}
+ */
+exports.writeEnv = (object, filePath) => {
+  filePath = expandHomeDir(filePath)
+  fs.ensureDirSync(path.dirname(filePath))
+  fs.writeFileSync(filePath, envfile.stringifySync(object))
+}
